@@ -1,0 +1,67 @@
+import { useState } from 'react';
+import ButtonUI from './ButtonUI';
+import MenuOverlay from './MenuOverlay';
+import styles from './Header.module.scss';
+import Container from './Container';
+
+const Header = () => {
+    const [isMenuVisible, setMenuVisible] = useState(false);
+    return <header className={styles.header}> 
+    {isMenuVisible && 
+        <MenuOverlay 
+            closeHandler = {() => {
+                setMenuVisible(false);
+             }} 
+         /> 
+     }
+    Logo<br />
+    <ButtonUI 
+        icon="menu"
+        clickHandler={ () => {
+            setMenuVisible(true)
+    }} />
+    
+    </header>
+}
+
+export default Header
+
+
+----
+import classnames from 'classnames/bind'
+import styles from './Button.module.scss'
+
+let cx = classnames.bind(styles);
+
+const Button = ({
+    label ="Deafault label",
+    type 
+}) => {
+    let buttonClasses = cx({
+        btn : true,
+        primary : type === "primary",
+        secondary : type == "secondary"
+    });
+    return <button className={buttonClasses}>{label}</button>
+}
+
+  export default Button
+
+
+
+
+
+  <h2>Syracuse Restaraunts</h2>
+    
+    {restaurants.map((restaurant) => {
+  const {title, excerpt, slug} = restaurant.node;
+  return <div>
+  <h3>{title}</h3>
+  {excerpt && <p>{excerpt}</p>}
+  <p><Link href={`/restaurants/${slug}`}>
+      View restaurant
+  </Link>
+  </p>
+  </div>
+
+} )}
